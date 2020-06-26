@@ -1,3 +1,5 @@
+//https://practice.geeksforgeeks.org/problems/maximum-of-all-subarrays-of-size-k/0
+
 package slidingwindow
 
 func printMaxOfSubarrays(a []int, k int) []int {
