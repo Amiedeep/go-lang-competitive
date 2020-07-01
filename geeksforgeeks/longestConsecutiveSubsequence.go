@@ -2,25 +2,46 @@
 
 package geeksforgeeks
 
+import "github.com/amiedeep/go-lang-competitive/utils"
+
 func longestConsecutiveSubsequence(a []int) int {
-	// var q, o []int
+	var m int
 
-	// var i int
+	h := map[int]bool{}
 
-	// for i = 0; i < k-1; i++ {
-	// 	q = pushElement(q, a[i])
-	// }
+	for _, value := range a {
+		h[value] = true
+	}
 
-	// for ; i < len(a); i++ {
+	for k := range h {
+		c := 1
+		t := k - 1
 
-	// 	if len(q) >= k {
-	// 		q = q[1:]
-	// 	}
+		for {
+			_, ok := h[t]
+			if !ok {
+				break
+			}
+			c++
+			delete(h, t)
+			t--
+		}
 
-	// 	q = pushElement(q, a[i])
+		t = k + 1
+		for {
+			_, ok := h[t]
+			if !ok {
+				break
+			}
+			c++
+			delete(h, t)
+			t++
+		}
 
-	// 	o = append(o, q[0])
-	// }
+		m = utils.Max(c, m)
 
-	return 1
+		delete(h, k)
+	}
+
+	return m
 }

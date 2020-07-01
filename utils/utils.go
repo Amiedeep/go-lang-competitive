@@ -8,3 +8,10 @@ func PrintSlice(input []int) {
 		fmt.Println()
 	}
 }
+
+func Max(x, y int) int {
+	if x < y {
+		return y
+	}
+	return x
+}
