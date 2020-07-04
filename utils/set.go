@@ -78,11 +78,9 @@ func (set *Set) Contains(value int) bool {
 	_, ok := set.KeySet[value]
 
 	return ok
+}
 
-	// for key := range set.elements {
-	// 	if value == key {
-	// 		return true
-	// 	}
-	// }
-	// return false
+//Size returns size of the set
+func (set *Set) Size() int {
+	return len(set.KeySet)
 }
