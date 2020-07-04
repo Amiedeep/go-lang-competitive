@@ -7,40 +7,38 @@ import "github.com/amiedeep/go-lang-competitive/utils"
 func longestConsecutiveSubsequence(a []int) int {
 	var m int
 
-	h := map[int]bool{}
+	set := utils.NewSet()
 
 	for _, value := range a {
-		h[value] = true
+		set.Add(value)
 	}
 
-	for k := range h {
+	for k := range set.KeySet {
 		c := 1
 		t := k - 1
 
 		for {
-			_, ok := h[t]
-			if !ok {
+			if !set.Contains(t) {
 				break
 			}
 			c++
-			delete(h, t)
+			set.Delete(t)
 			t--
 		}
 
 		t = k + 1
 		for {
-			_, ok := h[t]
-			if !ok {
+			if !set.Contains(t) {
 				break
 			}
 			c++
-			delete(h, t)
+			set.Delete(t)
 			t++
 		}
 
 		m = utils.Max(c, m)
 
-		delete(h, k)
+		set.Delete(k)
 	}
 
 	return m
