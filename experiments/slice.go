@@ -26,6 +26,21 @@ func main() {
 		fmt.Println("nil slice") // print
 	}
 
+	// var d [100]int
+	// fmt.Println(unsafe.Sizeof(d)) //prints 800
+
+	// e := make([]int, 20)
+
+	// fmt.Println(unsafe.Sizeof(e)) //prints 24
+
+	// var f = [100]int{}
+
+	// fmt.Println(unsafe.Sizeof(f)) //prints 800
+
+	// var f [100]struct{}
+
+	// fmt.Println(unsafe.Sizeof(f)) //prints 0
+
 	c = append(c, 5)
 	utils.PrintSlice(c) // 5
 
