@@ -36,4 +36,14 @@ func main() {
 	// fmt.Println(a[5]) //prints 0
 	a[5] = 5
 	fmt.Println(a[5]) // prints 5
+
+	z := map[int]struct{}{
+
+		1: {},
+	}
+
+	for key, value := range z {
+		fmt.Println(key, value)
+	}
+
 }
