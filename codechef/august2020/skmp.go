@@ -1,32 +1,50 @@
 package august2020
 
-import "strings"
+import (
+	"fmt"
+	"strings"
+)
+
+func main() {
+	var t int
+	var s, p string
+	fmt.Scanln(&t)
+
+	output := make([]string, t)
+
+	for i := 0; i < t; i++ {
+		fmt.Scanln(&s)
+		fmt.Scanln(&p)
+		output[i] = findSmallestCombination(s, p)
+	}
+	printSliceString(output)
+}
+
+func printSliceString(input []string) {
+	for _, element := range input {
+		fmt.Printf("%s  ", element)
+		fmt.Println()
+	}
+}
 
 func findSmallestCombination(input string, pattern string) string {
-
 	sHash := convertStringTohashMap(input)
 	pHash := convertStringTohashMap(pattern)
 
-	output := ""
-	found := false
+	var output string
 	for i := 'a'; i < 'z'; i++ {
-		if !found && strings.ContainsRune(pattern, i) {
-			for sHash[i] > pHash[i] {
-				output += string(i)
-				sHash[i]--
+		if pattern[0] == byte(i) {
+			if pattern[1] < byte(i) {
+				output += pattern
+			} else {
+				output += strings.Repeat(string(i), sHash[i]-pHash[i])
+				sHash[i] = pHash[i]
+				output += pattern
 			}
-
-			for key, value := range pHash {
-				sHash[key] -= value
-			}
-			output += pattern
-			found = true
 		}
 
-		output += strings.Repeat(string(i), sHash[i])
-		sHash[i] = 0
+		output += strings.Repeat(string(i), sHash[i]-pHash[i])
 	}
-
 	return output
 }
 

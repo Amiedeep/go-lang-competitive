@@ -19,5 +19,26 @@ func TestSKMP(t *testing.T) {
 	assert.Equal("aabadawyehhorst", o)
 
 	o = findSmallestCombination("daehabshatorawy", "sha")
-	assert.Equal("aaashabdehortwy", o)
+	assert.Equal("aaabdehorshatwy", o)
+
+	o = findSmallestCombination("bhjwbvejbwdj", "jv")
+	assert.Equal("bbbdehjjjvww", o)
+
+	o = findSmallestCombination("ghjwerguyinxcvagfweuj", "grf")
+	assert.Equal("aceegggrfhijjnuuvwwxy", o)
+
+	o = findSmallestCombination("ghjwerguyinxcvagfweuj", "fgg")
+	assert.Equal("aceefggghijjnruuvwwxy", o)
+
+	o = findSmallestCombination("ghjwerguyinxcvagfweuj", "geijr")
+	assert.Equal("acefgeijrgghjnuuvwwxy", o)
+
+	o = findSmallestCombination("ghjwerguyinxcvagfweuj", "ue")
+	assert.Equal("acefggghijjnrueuvwwxy", o)
+
+	o = findSmallestCombination("abcdeeuuuef", "uef")
+	assert.Equal("abcdeeuefuu", o)
+
+	o = findSmallestCombination("abcdeeuuuvvef", "uve")
+	assert.Equal("abcdeefuuuvev", o)
 }
