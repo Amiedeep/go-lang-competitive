@@ -33,12 +33,22 @@ func findSmallestCombination(input string, pattern string) string {
 
 	var output string
 	for i := 'a'; i < 'z'; i++ {
-		if pattern[0] == byte(i) {
-			if pattern[1] < byte(i) {
-				output += pattern
-			} else {
-				output += strings.Repeat(string(i), sHash[i]-pHash[i])
-				sHash[i] = pHash[i]
+		if len(pattern) > 0 && pattern[0] == byte(i) {
+			flag := false
+			for k := 1; k < len(pattern); k++ {
+				if pattern[k] > pattern[0] {
+					flag = true
+					output += strings.Repeat(string(i), sHash[i]-pHash[i])
+					sHash[i] = pHash[i]
+					output += pattern
+					break
+				} else if pattern[k] < pattern[0] {
+					flag = true
+					output += pattern
+					break
+				}
+			}
+			if !flag {
 				output += pattern
 			}
 		}
